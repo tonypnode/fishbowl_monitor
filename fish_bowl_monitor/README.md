@@ -21,3 +21,7 @@ Hardware (still a work in progress):
 4. Bread board
 5. 4K ohm resister
 
+
+## Resources
+* This is the site I am going to use to get the temp sensor working
+ and collecting data https://pimylifeup.com/raspberry-pi-temperature-sensor/
