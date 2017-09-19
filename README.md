@@ -6,12 +6,13 @@ sensors and the raspberry pi 3. I will attempt to use [Test Driven Development
 ### What do I want it to do right now?
 I'm hoping, it will do the following:
  *  Provide a web interface
- *  Track fishbowl water temperature
+ *  Display fishbowl water temperature
 
 ### Future features I want to add
  * Show data trends over time (grpahs n stuff)
  * Take a pic of the fishy every once in a while
- * Track who feeds the fish
+ * a button to push when someone feeds the fish
+ * Track who feeds the fish (picture?)
  * Track fishbowl ph balance
 
 Hardware (still a work in progress):
@@ -25,3 +26,17 @@ Hardware (still a work in progress):
 ## Resources
 * This is the site I am going to use to get the temp sensor working
  and collecting data https://pimylifeup.com/raspberry-pi-temperature-sensor/
+
+
+## Database Schtuff
+
+temperature model
+* Date time
+* temperature
+
+and that should be it for now
+
+Eventually I'm thinking about adding..:
+feeding model
+* date time
+* image location? if a picture is being taken

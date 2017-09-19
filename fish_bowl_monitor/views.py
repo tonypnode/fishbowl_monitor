@@ -1,7 +1,7 @@
-from django.http import HttpResponse
+from django.shortcuts import render
 
 # Create your views here.
 
 
-def fish_home(response):
-    return HttpResponse('<html><title>Hello World</title><body>Yo</body></html>')
+def fish_home(request):
+    return render(request, 'home.html')
