@@ -4,5 +4,5 @@ from django.db import models
 
 
 class TankTemp(models.Model):
-    date_time_stamp = models.DateTimeField()
-    temperature_data = models.IntegerField()
+    date_time_stamp = models.DateTimeField(auto_now_add=True)
+    temperature_data = models.FloatField()
