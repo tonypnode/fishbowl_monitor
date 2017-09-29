@@ -1,0 +1,4 @@
+django=1.11
+django-crontab=0.71
+selenium
+
