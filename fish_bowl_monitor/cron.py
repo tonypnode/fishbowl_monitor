@@ -9,6 +9,6 @@ def temperature_cron():
     TankTemp.objects.create(temperature_data=read_out)
     total = TankTemp.objects.all().count()
     while total > 8000:
-        yo = {rm.delete() for rm in TankTemp.objects.earliest()}
-        print('deleted some shit')
+        rm = TankTemp.objects.earliest()
+        rm.delete()
         total = TankTemp.objects.all().count()
