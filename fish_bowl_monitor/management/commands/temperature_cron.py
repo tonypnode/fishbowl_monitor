@@ -1,23 +1,21 @@
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 from fish_bowl_monitor.models import TankTemp
 from fish_bowl_monitor.temperature_probe import TempData
 
 """
-I was really hoping to be able to have django run this in the background, but
-I don't think that's possible. I looked at asynio and generators, but I don't
-think those are going to work. So, looks like I will do more 
+This is only to manually run the cron. The cron is in and works just fine.
 """
 
 
 class Command(BaseCommand):
-    help = 'Recurring posting of temp to database, runs forever'
+    help = 'Manually post current temp to db and delete the oldest entry'
 
     def handle(self, *args, **kwargs):
         tank_temp = TempData()
         read_out = tank_temp.read_temp()
-        print(read_out)
         TankTemp.objects.create(temperature_data=read_out)
-        self.stdout.write('tem- = %s' % read_out)
+        rm = TankTemp.objects.earliest('date_time_stamp')
+        rm.delete()
 
 
 
