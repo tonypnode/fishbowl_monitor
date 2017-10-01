@@ -14,14 +14,36 @@
         default_data = data.default_data;
         var ctx = document.getElementById("myChart").getContext('2d');
         var myChart = new Chart(ctx, {
-        	type: 'line',
+        	type: 'bar',
             data: {
         		labels: labels,
                 datasets: [{
 					label: labels,
-					data: default_data
+					data: default_data,
+                    type: 'line',
+                    pointRadius: 0,
+                    lineTension: 0,
+                    borderWidth: 2
 				}]
-            }
+            },
+            options: {
+				scales: {
+					xAxes: [{
+						type: 'time',
+						distribution: 'series',
+						ticks: {
+							source: 'labels'
+						}
+					}],
+					yAxes: [{
+						scaleLabel: {
+							display: true,
+							labelString: 'Closing price ($)'
+						}
+					}]
+				}
+			}
+
         })
     },
     error: function(error_data) {

@@ -30,7 +30,7 @@ class ChartData(APIView):
         default_data = []
         for stuff in qset:
             default_data.append(stuff[1])
-            dtg = stuff[0].strftime("%d %H:%m")
+            dtg = stuff[0].strftime("%b %d %Y %H:%m:%s")
             labels.append(dtg)
 
         data = {
