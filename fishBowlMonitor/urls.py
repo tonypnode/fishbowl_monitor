@@ -13,16 +13,16 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url, include
+from django.conf.urls import url
 from django.contrib import admin
-from django.conf import settings
-from fish_bowl_monitor import views
+from fish_bowl_monitor.views import fish_home, fish_home_chart, ChartData
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^fishbowl$', views.fish_home),
-    url(r'^$', views.fish_home),
+    url(r'^fish/chart$', fish_home_chart),
+    url(r'^api/chart/data/$', ChartData.as_view()),
+    url(r'^$', fish_home),
 ]
 
 # if settings.DEBUG:
