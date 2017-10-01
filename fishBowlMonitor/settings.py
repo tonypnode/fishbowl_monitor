@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'fish_bowl_monitor.apps.FishBowlMonitorConfig',
     # 'debug_toolbar',
     'django_crontab',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

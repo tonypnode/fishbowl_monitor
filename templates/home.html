@@ -1,14 +1,19 @@
 {% extends "base.html" %}
 
-{% block title %}The Pillitere Family Fishbowl Monitor{% endblock %}
+<script>
+    {% block jquery %}
+    {% endblock %}
+</script>
 
-{% block body %}
+{% block content %}
 
-    <h1 align="center"> This is Purple's Fish Tank</h1>
+     <h1 align="center"> This is Purple's Fish Tank</h1>
 
-    <div align="center"><h2>{{ current_tank_temp }}&deg;f</h2></div>
+    <div align="center"><h2 style="font-size: 2000%;">{{ current_tank_temp }}&deg;f</h2></div>
     <div align="left"><h4>Oldest record: {{ earliest_tank_temp }}&deg;f on {{ earliest_date }}</h4></div>
+    <div align="right"><h4><a href="/fish/chart">See Graph</a></h4></div>
 
 
+{% endblock content %}
 
-{% endblock %}
+
