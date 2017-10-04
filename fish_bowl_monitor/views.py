@@ -5,7 +5,13 @@ from rest_framework.response import Response
 
 
 def fish_home_chart(request):
-    return render(request, 'chart.html')
+    check_db = TankTemp.objects.latest('date_time_stamp')
+    oldest = TankTemp.objects.earliest('date_time_stamp')
+    return render(request, 'chart.html', {
+        'current_tank_temp': check_db.temperature_data,
+        'earliest_tank_temp': oldest.temperature_data,
+        'earliest_date': oldest.date_time_stamp,
+    })
 
 
 def fish_home(request):
@@ -25,12 +31,13 @@ class ChartData(APIView):
 
     def get(self, reqest):
         # Petty sure this can get cleaned up, but I need to get some reps in before it's clear how
-        qset = TankTemp.objects.filter().order_by('date_time_stamp').values_list('date_time_stamp', 'temperature_data')[::150]
+        total = TankTemp.objects.all().count()
+        qset = TankTemp.objects.filter().order_by('date_time_stamp').values_list('date_time_stamp', 'temperature_data')[total - 1440:total:60]
         labels = []
         default_data = []
         for stuff in qset:
             default_data.append(stuff[1])
-            dtg = stuff[0].strftime("%b %d %Y %H:%m:%s")
+            dtg = stuff[0].strftime("%b %d %Y %H:%m")
             labels.append(dtg)
 
         data = {

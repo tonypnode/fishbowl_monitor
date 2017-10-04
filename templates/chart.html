@@ -59,7 +59,13 @@
     <div class="row">
         <div class='col-sm-12'>
             <h1>Purple's Fish Tank monitor</h1>
-            <canvas id="myChart" width="400" height="400"></canvas>
+            <h4>Current Tank Temp is {{ current_tank_temp }}</h4>
+           <div align="center"><h2 style="font-size: 2000%;">{{ current_tank_temp }}&deg;f</h2></div>
+            <div align="left"><h4>Oldest record: {{ earliest_tank_temp }}&deg;f on {{ earliest_date }}</h4></div>
+            <div align="right"><h4><a href="/fish/chart">See Graph</a></h4></div>
+
+
+            <canvas id="myChart" width="95%" height="100"></canvas>
 
         </div>
     </div>
