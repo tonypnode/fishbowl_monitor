@@ -14,14 +14,14 @@
         default_data = data.default_data;
         var ctx = document.getElementById("myChart").getContext('2d');
         var myChart = new Chart(ctx, {
-        	type: 'bar',
+        	type: 'line',
             data: {
         		labels: labels,
                 datasets: [{
-					label: labels,
+					label: 'Fishbowl Temp',
 					data: default_data,
                     type: 'line',
-                    pointRadius: 0,
+                    pointRadius: 5,
                     lineTension: 0,
                     borderWidth: 2
 				}]
@@ -38,7 +38,7 @@
 					yAxes: [{
 						scaleLabel: {
 							display: true,
-							labelString: 'Closing price ($)'
+							labelString: 'Temperature'
 						}
 					}]
 				}
@@ -60,12 +60,11 @@
         <div class='col-sm-12'>
             <h1>Purple's Fish Tank monitor</h1>
             <h4>Current Tank Temp is {{ current_tank_temp }}</h4>
-           <div align="center"><h2 style="font-size: 2000%;">{{ current_tank_temp }}&deg;f</h2></div>
-            <div align="left"><h4>Oldest record: {{ earliest_tank_temp }}&deg;f on {{ earliest_date }}</h4></div>
-            <div align="right"><h4><a href="/fish/chart">See Graph</a></h4></div>
+    <div align="left"><h4>Oldest record: {{ earliest_tank_temp }}&deg;f on {{ earliest_date }}</h4></div>
+    <div align="right"><h4><a href="/fish/chart">See Graph</a></h4></div>
 
 
-            <canvas id="myChart" width="95%" height="100"></canvas>
+            <canvas id="myChart" width="90%" height="35%"></canvas>
 
         </div>
     </div>

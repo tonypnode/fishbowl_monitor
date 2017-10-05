@@ -8,6 +8,7 @@ def temperature_cron():
     tank_temp = TempData()
     read_out = tank_temp.read_temp()
     TankTemp.objects.create(temperature_data=read_out, weather_data_temp=opw.get_temp_data())
-    rm = TankTemp.objects.earliest('date_time_stamp')
-    rm.delete()
+    if TankTemp.objects.all().count() > 10000:
+        rm = TankTemp.objects.earliest('date_time_stamp')
+        rm.delete()
 

@@ -43,11 +43,11 @@ import requests
 
 
 class OpenWeather:
-    opw_api_key = 'INSERTYOURAPPIDHEREE'
+    opw_api_key = '353e4ce0303661da7132ab2b46a2dd4a'
     opw_base_url = 'http://api.openweathermap.org/data/2.5/weather'
     opw_url_options = ',us&&units=imperial&appid='
 
-    def __init__(self, zip_code='99999'):
+    def __init__(self, zip_code='28326'):
         self.weather_url = "{}?zip={}{}{}".format(self.opw_base_url, zip_code, self.opw_url_options, self.opw_api_key)
 
     def get_temp_data(self):
