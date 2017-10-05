@@ -6,12 +6,14 @@
     var endpoint = '/api/chart/data/';
     var labels = [];
     var default_data = [];
+    var outside_temp = [];
     $.ajax({
     method: "GET",
     url: endpoint,
     success: function(data){
     	labels = data.labels;
         default_data = data.default_data;
+        outside_temp = data.outside_temp;
         var ctx = document.getElementById("myChart").getContext('2d');
         var myChart = new Chart(ctx, {
         	type: 'line',
@@ -19,12 +21,22 @@
         		labels: labels,
                 datasets: [{
 					label: 'Fishbowl Temp',
+                    backgroundColor: window.chartColors.red,
+                    borderColor: window.chartColors.red,
 					data: default_data,
                     type: 'line',
                     pointRadius: 5,
                     lineTension: 0,
-                    borderWidth: 2
-				}]
+                    borderWidth: 2,
+                    fill: false
+				},
+                {
+                    label: "Outside Temp",
+                    backgroundColor: window.chartColors.blue,
+                    borderColor: window.chartColors.blue,
+                    fill: false,
+                    data: outside_temp
+                }]
             },
             options: {
 				scales: {
@@ -51,6 +63,9 @@
         console.log(error_data)
         }
     });
+
+
+
     {% endblock %}
 </script>
 

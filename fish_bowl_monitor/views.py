@@ -46,13 +46,16 @@ class ChartData(APIView):
         qset = TankTemp.objects.filter().order_by('date_time_stamp').values_list('date_time_stamp', 'temperature_data', 'weather_data_temp')[total - 1440:total:60]
         labels = []
         default_data = []
+        outside_temp = []
         for stuff in qset:
             default_data.append(stuff[1])
             dtg = stuff[0].strftime("%b %d %Y %H:%m")
             labels.append(dtg)
+            outside_temp.append(stuff[2])
 
         data = {
             'labels': labels,
             'default_data': default_data,
+            'outside_temp': outside_temp,
         }
         return Response(data)
