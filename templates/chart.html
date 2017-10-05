@@ -6,25 +6,37 @@
     var endpoint = '/api/chart/data/';
     var labels = [];
     var default_data = [];
+    var outside_temp = [];
     $.ajax({
     method: "GET",
     url: endpoint,
     success: function(data){
     	labels = data.labels;
         default_data = data.default_data;
+        outside_temp = data.outside_temp;
         var ctx = document.getElementById("myChart").getContext('2d');
         var myChart = new Chart(ctx, {
-        	type: 'bar',
+        	type: 'line',
             data: {
         		labels: labels,
                 datasets: [{
-					label: labels,
+					label: 'Fishbowl Temp',
+                    backgroundColor: window.chartColors.red,
+                    borderColor: window.chartColors.red,
 					data: default_data,
                     type: 'line',
-                    pointRadius: 0,
+                    pointRadius: 5,
                     lineTension: 0,
-                    borderWidth: 2
-				}]
+                    borderWidth: 2,
+                    fill: false
+				},
+                {
+                    label: "Outside Temp",
+                    backgroundColor: window.chartColors.blue,
+                    borderColor: window.chartColors.blue,
+                    fill: false,
+                    data: outside_temp
+                }]
             },
             options: {
 				scales: {
@@ -38,7 +50,7 @@
 					yAxes: [{
 						scaleLabel: {
 							display: true,
-							labelString: 'Closing price ($)'
+							labelString: 'Temperature'
 						}
 					}]
 				}
@@ -51,6 +63,9 @@
         console.log(error_data)
         }
     });
+
+
+
     {% endblock %}
 </script>
 
@@ -59,7 +74,12 @@
     <div class="row">
         <div class='col-sm-12'>
             <h1>Purple's Fish Tank monitor</h1>
-            <canvas id="myChart" width="400" height="400"></canvas>
+            <h4>Current Tank Temp is {{ current_tank_temp }}</h4>
+    <div align="left"><h4>Oldest record: {{ earliest_tank_temp }}&deg;f on {{ earliest_date }}</h4></div>
+    <div align="right"><h4><a href="/fish/chart">See Graph</a></h4></div>
+
+
+            <canvas id="myChart" width="90%" height="35%"></canvas>
 
         </div>
     </div>

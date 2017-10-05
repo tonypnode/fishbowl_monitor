@@ -57,3 +57,9 @@ I finally get it going. Still some tweaking I want to do with the graph and the
 display of the date and time labels, but it's doing what it should. Shows a graph using 
 ajax. I also incorporated an API to get the data. Didn't know I was going to do that... but... meh
 . 
+* 4 Oct 17:
+    * So... I totally acctidentally overwrote the live database on the raspberry pi with the blank database
+    on my machine. I lost all of the historical data... oops. But it did foce me to
+    add in a /setup/db view in order to push 2000 rows of data so that the chart doesn't error
+    out. I know there is a way to do that better, I just haven't refactored yet. In other news, I 
+    I am also gathering outside temp from openweathermap.org via it's API. working like a champ!

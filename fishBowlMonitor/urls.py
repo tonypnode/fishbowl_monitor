@@ -15,13 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from fish_bowl_monitor.views import fish_home, fish_home_chart, ChartData
+from fish_bowl_monitor.views import fish_home, fish_home_chart, ChartData, set_up_db
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^fish/chart$', fish_home_chart),
     url(r'^api/chart/data/$', ChartData.as_view()),
+    url(r'^setup/db$', set_up_db),
     url(r'^$', fish_home),
 ]
 
